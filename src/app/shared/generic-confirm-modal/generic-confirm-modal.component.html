@@ -1,0 +1,26 @@
+<div class="container">
+  <br>
+  <div class="body">
+    <h3>{{ title }}</h3>
+    <p style="text-align: center; color: grey">{{body0}}<br>{{body}}</p>
+  </div>
+  <div class="line">
+    <p></p>
+  </div>
+  <div class="container1">
+      <button
+              style="font-weight: bold; padding-right: 30px; padding-left: 30px; border: 1px solid royalblue; color: royalblue; background-color: white; float: right;"
+              mat-raised-button
+              color="primary"
+              (click)="closeDialog();"
+              class="button-apply"
+      >{{ buttonConstant.annulla }}</button>
+      <button
+              style="padding-right: 30px; padding-left: 30px; background-color: #da0b00; color: white; float: right;"
+              mat-raised-button
+              color="primary"
+              (click)="confirm();"
+              class="button-apply"
+      >{{ button }}</button>
+  </div>
+</div>

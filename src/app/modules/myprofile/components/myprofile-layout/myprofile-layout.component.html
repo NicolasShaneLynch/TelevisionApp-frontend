@@ -1,0 +1,37 @@
+<div class="myprofile-container">
+
+    <h3>Profilo personale</h3>
+
+    <div class="card-cont">
+
+        <div class="left-card">
+            <div class="bg-card-cont">
+                <div style="height: 50%">
+                    <div class="bg-card-cont-header">
+                        <img [src]="imageData" style="height: 95px; width: 95px; border-radius: 50%; position: relative; top: 25px; left: 25px; background-color: #47caff; object-fit: cover; object-position: center"/>
+                    </div>
+                    <div class="myprofile-info">
+                    <h3>{{this.userinfo.name}} {{this.userinfo.lastname}}</h3>
+                    <p>{{this.username}}</p>
+                     <h4 style="color: #a2a2a2;">Genere</h4>
+                     <p>{{this.userinfo.genderType}}</p>
+                        <h4 style="color: #a2a2a2;">Data di nascita</h4>
+                        <p>{{this.userinfo.date | date:'dd/MM/YYYY'}}</p>
+                        <h4 style="color: #a2a2a2;">Dati di residenza</h4>
+                        <p>{{this.userinfo.address}} - {{this.userinfo.city}} ({{this.userinfo.province}})</p>
+                    </div>
+                </div>
+                <button class="btn_modify_profile" color="primary" mat-stroked-button style="color: #a6039b; border-color: #a6039b; font-weight: bold" (click)="btnModifyClickEvent()">MODIFICA</button>
+            </div>
+        </div>
+
+        <div class="right-card">
+            <router-outlet></router-outlet>
+        </div>
+
+
+    </div>
+
+
+</div>
+

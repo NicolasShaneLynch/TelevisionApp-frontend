@@ -1,0 +1,60 @@
+<p class="p">Informazioni Generali</p>
+<div class="detail-flex-container">
+    <div class="main-image-container">
+        <img class="image" src="{{imgSrc}}">
+        <div class="buttons-flex-container1">
+            <button mat-raised-button class="cancella" (click)="deleteImage()">CANCELLA</button>
+            <button mat-raised-button class="modifica" >MODIFICA</button>
+        </div>
+    </div>
+    <div class="form-flex-container">
+        <form [formGroup]="formGroup">
+            <mat-form-field appearance="outline" class="nome">
+                <mat-label>Nome prodotto</mat-label>
+                <input matInput  placeholder="Prodotto di prova" formControlName="name" name="name" required maxlength="255">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="tipologia">
+                <mat-label>Tipologia</mat-label>
+                <mat-select  [value]="'VOD'" formControlName="product_type">
+                    <mat-option value="VOD" >VOD</mat-option>
+                    <mat-option value="LIVE">LIVE</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="prezzo">
+                <mat-label>Prezzo</mat-label>
+                <input matInput placeholder="Prezzo prodotto" formControlName="price" name="price" required>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="descrizione">
+                <mat-label>Descrizione</mat-label>
+                <input matInput placeholder="Descrizione" formControlName="description" name="description" required maxlength="255">
+                <!--<textarea matInput placeholder="Descrizione" formControlName="description" name="description" rows="8" required style="resize: none"></textarea>-->
+            </mat-form-field>
+        </form>
+    </div>
+</div>
+<div>
+    <span class="p">Altre Immagini</span>
+    <div class="images-flex-container">
+        <input type="file" #fileInput style="display: none" (change)="onFileSelected($event)">
+        <button mat-raised-button (click)="openFileInput()">AGGIUNGI IMMAGINE</button>
+    </div>
+    <div class="images-container">
+
+        <ng-container *ngFor="let image of imageList">
+            <button (click)="switchImage(image)">
+                <p class="p">img</p>
+            </button>
+        </ng-container>
+
+    </div>
+</div>
+<div class="warning-flex-container">
+    <span>{{INPUT_CONSTANT.campi_obbligatori}}</span>
+</div>
+<div class="buttons-flex-container2">
+    <button mat-raised-button class="custom-button" (click)="modificaProdotto()">SALVA</button>
+</div>
+
+
+
+

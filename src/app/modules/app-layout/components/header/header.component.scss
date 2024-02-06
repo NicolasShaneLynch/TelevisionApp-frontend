@@ -1,0 +1,93 @@
+@import "../../../../../assets/scss/variables.scss";
+
+mat-toolbar {
+
+  mat-toolbar-row {
+    background-color: #0360D9;
+    .notification-icon {
+      margin-right: 24px;
+      cursor: pointer;
+    }
+
+    figure {
+      height: 64px;
+    }
+
+    .styled_logo{
+      width: 160px;
+      height: 40px;
+      background-image: url('../../../../../assets/images/television_app_logo.svg');
+    }
+
+  }
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+  .round-img-profile {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 12px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $light-blue;
+
+    .profile-image {
+      max-width: 100%;
+      object-fit: cover;
+    }
+
+    .profile-avatar {
+      color: #fff;
+      font-size: 18px;
+      line-height: 1;
+      font-weight: 500;
+
+      p {
+        margin-bottom: 100px;
+      }
+    }
+  }
+  span {
+    font-size: 18px;
+  }
+}
+.secondary-row {
+  background-color: $bg-color;
+  height: 125px;
+  padding: 0 24px 0 24px;
+  span {
+    font-size: 14px;
+  }
+  span,
+  mat-icon {
+    color: $secondary-color;
+    margin-bottom: 0;
+    cursor: pointer;
+  }
+}
+.flex-items {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+}
+
+.calc-width {
+  width: 100%;
+  margin: 0;
+}
+
+.title-content {
+  color: black;
+  font-size: 24px;
+  font-weight: 700;
+  margin-top: 6px;
+}
+
+
+figure {
+  display: flex;
+  align-items: center;
+}

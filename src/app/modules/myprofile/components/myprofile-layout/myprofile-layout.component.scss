@@ -1,0 +1,57 @@
+.myprofile-container{
+  width: 100%;
+  height: 100%;
+  background-color: #f3f3f3;
+  padding: 30px 120px 30px 120px;
+}
+
+.card-cont{
+  display: flex;
+  margin-top: 30px;
+}
+
+.left-card{
+  width: 30%;
+  background-color: white;
+  height: 90vh;
+  margin-right: 15px;
+
+}
+
+.right-card{
+  width: 60%;
+  background-color: white;
+  height: 600px;
+  margin-left: 15px;
+}
+
+.bg-card-cont{
+
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+
+.bg-card-cont-header{
+  height: 30%;
+  background-color: #a6039b;
+}
+
+.btn_modify_profile{
+  margin: 20px !important;
+}
+
+.myprofile-info{
+  padding: 45px;
+}
+
+h3 {
+  margin-bottom: 0;
+}
+
+h4{ margin-bottom: 4px; margin-top: 18px;}
+
+
+

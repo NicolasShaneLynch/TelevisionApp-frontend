@@ -1,0 +1,204 @@
+// Importa le variabili SCSS
+@import "../../../../../assets/scss/variables.scss";
+
+// Variabile per larghezza minima del contenitore immagine
+$min-width-image-container: 375px;
+
+// Contenitore principale con layout flessibile
+.detail-flex-container {
+  width: 100%;
+  //height: 100vh;
+  display: flex;
+  align-items: flex-start; // Allinea gli elementi verticalmente all'inizio
+  justify-content: flex-start; // Allinea gli elementi orizzontalmente all'inizio
+  margin-right: 10px;
+}
+
+// Contenitore dei bottoni con layout flessibile
+.buttons-flex-container1 {
+  height: auto;
+  display: flex;
+  flex-direction: row; // Allinea i bottoni da destra a sinistra
+  align-items: flex-start; // Allinea gli elementi verticalmente all'inizio
+}
+
+// Stile dei bottoni
+.buttons-flex-container1 > .cancella {
+  width: $min-width-image-container / 2;
+  background-color: white;
+  border-style: solid;
+  border-color: red;
+  border-width: 2px;
+  color: red;
+  margin-top: 10px;
+}
+
+// Stile dei bottoni al passaggio del mouse
+.buttons-flex-container1 > .cancella:hover {
+  background-color: white;
+  color: red;
+}
+
+// Stile dei bottoni
+.buttons-flex-container1 > .modifica {
+  width: $min-width-image-container / 2;
+  background-color: $primary-color;
+  color: white;
+  margin-left: 5px; // Aggiunto margine tra i bottoni
+  margin-top: 10px;
+}
+
+// Stile dei bottoni al passaggio del mouse
+.buttons-flex-container1 > .modifica:hover {
+  background-color: $primary-color-hover;
+}
+
+// Contenitore dei bottoni con layout flessibile
+.buttons-flex-container2 {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row-reverse; // Allinea i bottoni da destra a sinistra
+  align-items: flex-start; // Allinea gli elementi verticalmente all'inizio
+}
+
+// Stile dei bottoni
+.buttons-flex-container2 > button {
+  width: 15%;
+  background-color: $primary-color;
+  color: white;
+  margin-left: 5px; // Aggiunto margine tra i bottoni
+}
+
+// Stile dei bottoni al passaggio del mouse
+.buttons-flex-container2 > button:hover {
+  background-color: $primary-color-hover;
+}
+
+// Contenitore avviso con layout flessibile
+.warning-flex-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start; // Allinea gli elementi verticalmente all'inizio
+}
+
+// Stile del testo con colore personalizzato
+.p {
+  color: #9B999D;
+  font-weight: bold;
+  margin: 10px;
+  font-size: 24px;
+}
+
+// Contenitore immagine con layout flessibile in colonna
+.main-image-container {
+  margin: 10px;
+  width: 25%;
+  height: 405px;
+  border-radius: 10px;
+  border-width: 2.5px;
+  display: flex;
+  flex-direction: column;
+}
+
+// Stile del pulsante all'interno dell'immagine
+.main-image-container > .button1 {
+  min-width: $min-width-image-container / 2;
+  margin-top: 5px;
+  background-color: $primary-color;
+  color: white;
+}
+
+.main-image-container > .button2 {
+  margin-top: 5px;
+  background-color: white;
+  color: red;
+}
+
+// Stile dell'immagine con bordi tratteggiati
+.image {
+  height: 330px;
+  background-color: #F2F2F2;
+  object-fit: cover;
+  border-style: dashed;
+  border-color: #9B999D;
+  border-radius: 5px;
+}
+
+// Stile input di tipo file nascosto
+.file-input {
+  display: none;
+}
+
+// Stile per pulsanti personalizzati
+.custom-button {
+  margin-bottom: 1px;
+}
+
+$first-input-width: 100%;
+
+.form-flex-container {
+  width: 40%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  flex-grow: 1;
+
+  .nome {
+    min-width: 100%
+  }
+
+  .tipologia {
+    min-width: 50%;
+    padding-right: 5px;
+  }
+
+  .prezzo {
+    min-width: 50%;
+    padding-left: 5px;
+  }
+
+  .descrizione {
+    min-width: 100%;
+    height: 150px
+  }
+}
+
+.images-flex-container{
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.images-flex-container > button {
+  background-color: white;
+  color: $primary-color;
+  font-weight: bold;
+  border-style: solid;
+  padding: 20px;
+  border-width: 2px;
+  border-color: $primary-color;
+  font-size: 20px;
+
+}
+
+.images-container{
+  min-height: 200px;
+  flex-direction: column;
+}
+
+.images-container > button{
+  border-style: solid;
+  border-color: black;
+  margin: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+

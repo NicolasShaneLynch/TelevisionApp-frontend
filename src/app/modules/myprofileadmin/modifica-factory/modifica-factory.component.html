@@ -1,0 +1,51 @@
+
+<div class="container2">
+    <div class="comp1">
+        <h3>{{factory_name}}</h3>
+    </div>
+    <div class="comp4">
+        <div class="button-confirm-container">
+            <button mat-raised-button style="padding-right: 80px; padding-left: 80px; background-color: #a6039b; color: white; float: right;" (click)="update()">SALVA</button>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+    <form [formGroup]="FormGroup2">
+        <div class="container2">
+            <p class="error">{{log}}</p>
+        </div>
+        <div class="container2">
+            <p class="p">Informazioni Generali</p>
+        </div>
+    <div class="container2">
+        <mat-form-field appearance="outline" style="flex-grow: 1; padding-right: 10px;">
+            <mat-label>Nome</mat-label>
+            <input matInput formControlName="factory_name" required maxlength="255">
+        </mat-form-field>
+            <mat-label style="flex-grow: 1; padding-right: 220px;"></mat-label>
+    </div>
+    <div class="container2">
+        <mat-form-field appearance="outline" style="flex-grow: 1; padding-right: 10px;">
+            <mat-label>Indirizzo</mat-label>
+            <input matInput formControlName="factory_address" required maxlength="255">
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="flex-grow: 1; padding-right: 10px;">
+            <mat-label>Provincia</mat-label>
+            <input matInput formControlName="factory_province" required maxlength="2">
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="flex-grow: 1; padding-right: 10px;">
+            <mat-label>Città</mat-label>
+            <input matInput formControlName="factory_city" required maxlength="255">
+        </mat-form-field>
+    </div>
+    <div class="container2">
+        <mat-form-field class="example-full-width" appearance="outline" style="flex-grow: 1; padding-right: 10px; width: 1400px; max-height: 173px; min-height: 173px">
+            <mat-label>Descrizione</mat-label>
+            <textarea matInput required formControlName="factory_description" rows="7" style="resize: none"></textarea>
+        </mat-form-field>
+    </div>
+    <div class="container2">
+        <p class="p3">{{INPUT_CONSTANT.campi_obbligatori}}</p>
+    </div>
+</form>

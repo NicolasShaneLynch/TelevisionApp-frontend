@@ -1,0 +1,142 @@
+<div class="detail-container">
+    <div style="width:75%; margin: 0 auto;">
+    <h3 style="padding-top: 30px; padding-bottom: 30px;">Modifica Profilo</h3>
+
+    <mat-card class="detail-card">
+
+        <div class="header-container"> <!-- SALVA + IMG -->
+            <div class="image-edit" style="position: relative; background-color: #47caff; width: 64px; height: 64px; border-radius: 50%;">
+                <img [ngStyle]="{ 'visibility': imageData.trim() === '' ? 'hidden' : 'visible' }" [src]="imageData !== '' ? imageData : '#'" style="width: 64px; height: 64px; border-radius: 32px; object-fit: cover; object-position: center;"/>
+                <input type="file" #fileInput style="display: none" (change)="onFileSelected($event)">
+
+                <div (click)="openFileInput()" style="border-radius: 50%; width: 28px; height: 28px; background-color: #a6039b; bottom: 4px; right: -8px; position: absolute; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                    <mat-icon style="color:white; font-size: 15px;width: fit-content; height: fit-content;">edit</mat-icon>
+                </div>
+            </div>
+            <button mat-raised-button color="primary" style="background-color: #a6039b; color: white" (click)="updateProfile()">SALVA</button>
+        </div>
+
+        <div class="anagrafica-container">
+            <p class="grey-text-title">Dati Anagrafici</p>
+
+            <form [formGroup]="secondFormGroup" autocomplete="off">
+                <div class="form-input-row">
+                    <mat-form-field appearance="outline" style="flex-grow: 1; padding-right: 10px">
+                        <mat-label>Cognome</mat-label>
+                        <input matInput placeholder="" formControlName="lastname" required maxlength="255">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="flex-grow: 1; padding-right: 10px">
+                        <mat-label>Nome</mat-label>
+                        <input matInput placeholder="" formControlName="firstname" required maxlength="255">
+                    </mat-form-field>
+                </div>
+                <div class="form-input-row">
+                    <mat-form-field appearance="outline" style="flex-grow: 1; padding-right: 10px;">
+                        <mat-label>Data</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="birthday" placeholder="Scegli data">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="flex-grow: 1; padding-right: 10px;">
+                        <mat-label>Genere</mat-label>
+                        <mat-select  [value]="'UOMO'" formControlName="genre" style="display: none;">
+                            <mat-option value="man" >Uomo</mat-option>
+                            <mat-option value="woman">Donna</mat-option>
+                        </mat-select>
+                        <button mat-icon-button matSuffix>
+                            <mat-icon style="color: grey">{{'arrow_drop_down'}}</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </div>
+
+
+                <div class="form-input-row">
+                    <mat-form-field appearance="outline" style="flex-grow: 1; padding-right: 10px">
+                        <mat-label>Nazione</mat-label>
+                        <input matInput placeholder="" formControlName="nation" required maxlength="255">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="flex-grow: 1; padding-right: 10px">
+                        <mat-label>Provincia</mat-label>
+                        <input matInput placeholder="" formControlName="province" required maxlength="2">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="flex-grow: 1; padding-right: 10px">
+                        <mat-label>Città</mat-label>
+                        <input matInput placeholder="" formControlName="city" required maxlength="255">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="flex-grow: 1; padding-right: 10px">
+                        <mat-label>Indirizzo</mat-label>
+                        <input matInput placeholder="" formControlName="address" required maxlength="255">
+                    </mat-form-field>
+                </div>
+
+            </form>
+
+
+        </div>
+
+        <div class="accesso-container">
+            <p class="error">{{log}}</p>
+            <p class="grey-text-title">Dati di accesso</p>
+            <form [formGroup]="firstFormGroup" autocomplete="off">
+                <ng-template matStepLabel>Accesso</ng-template>
+                <div class="form-input-row" style="margin: 0px !important;">
+                    <mat-form-field appearance="outline" style="flex-grow: 1; padding-right: 5px">
+                        <mat-label>Email</mat-label>
+                        <input matInput placeholder="ex@example.com" formControlName="email" name="email" required maxlength="128">
+                        <mat-error>{{
+                            firstFormGroup.controls['email'].hasError("pattern")
+                                ? errorsConstant.input.email_pattern
+                                : firstFormGroup.controls['email'].value === ""
+                                    ? errorsConstant.required
+                                    : firstFormGroup.controls['email'].hasError("minlength")
+                                        ? errorsConstant.input.min_length_3
+                                        : errorsConstant.input.max_length_128
+                            }}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="flex-grow: 1; padding-left: 5px">
+                        <mat-label>Tipologia Utente</mat-label>
+                        <mat-select  [value]="'user'" formControlName="usertype">
+                            <mat-option value="user" >User</mat-option>
+                            <mat-option value="admin">Admin</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="form-input-row">
+                    <mat-form-field appearance="outline" style="flex-grow: 1; padding-right: 5px">
+                        <mat-label>Enter your password</mat-label>
+                        <input name="password" matInput [type]="hide ? 'password' : 'text'" formControlName="password" required maxlength="64">
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-error>{{
+                            firstFormGroup.controls['password'].value === ""
+                                ? "Campo obbligatorio"
+                                : (firstFormGroup.controls['password'].hasError("minlength") ? "Almeno 8 caratteri": "")
+                            }}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="flex-grow: 1; padding-left: 5px">
+                        <mat-label>Enter your password again</mat-label>
+                        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password2" required maxlength="64">
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-error>{{
+                            firstFormGroup.controls['password2'].hasError("passwordMismatch") ? "Le password devono coincidere" : ""
+                            }}</mat-error>
+                    </mat-form-field>
+                </div>
+            </form>
+        </div>
+        <div class="gestioneaccount-container">
+            <p class="grey-text-title">Gestione Account</p>
+            <div class="header-container"> <!-- SALVA + IMG -->
+                <p style="color: lightgray">Puoi eliminare il tuo account e tutti i dati associati ad esso.</p>
+                <button mat-stroked-button color="primary" style="width: 120px; border: 1px solid #da0b00; color: #da0b00;" (click)="deleteProfile()">ELIMINA</button>
+            </div>
+        </div>
+
+    </mat-card>
+
+    </div>
+
+</div>

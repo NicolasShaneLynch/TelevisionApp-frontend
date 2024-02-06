@@ -1,0 +1,43 @@
+<div class="{{ theme }}-theme">
+  <app-header></app-header>
+  <div class="app-body">
+    <app-sidenav></app-sidenav>
+    <div class="calc-width">
+      <mat-toolbar-row class="secondary-row">
+        <div class="flex-items-container">
+          <div
+            class="flex-items"
+            tabindex="0">
+            <!--(keydown.enter)="goBack()"
+            (click)="goBack()"-->
+
+            <!--<mat-icon>chevron_left</mat-icon>
+            <span>{{ labelConstant.indietro }}</span>-->
+            <p style="color: #9B999D">{{ position | setTextByUrl :  dashboardConstant : "pageLabel"}}</p>
+            <p>{{ position | setTextByUrl :  dashboardConstant : "positionLabel" }}</p>
+            <div>
+            </div>
+          </div>
+          <div class="title-container">
+            <p class="title-content">
+              {{ title | setTextByUrl : dashboardConstant : "title" }}
+            </p>
+            <div class="cta-container">
+              <div *ngIf="section == 'utenti'">
+                <app-crea-utente></app-crea-utente>
+              </div>
+              <div *ngIf="section == 'prodotti'">
+                <app-crea-prodotto></app-crea-prodotto>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-toolbar-row>
+      <mat-sidenav-container>
+        <mat-sidenav-content class="{{ classToAdd }}">
+          <router-outlet></router-outlet>
+        </mat-sidenav-content>
+      </mat-sidenav-container>
+    </div>
+  </div>
+</div>

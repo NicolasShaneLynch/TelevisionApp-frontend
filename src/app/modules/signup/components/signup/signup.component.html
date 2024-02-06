@@ -1,0 +1,212 @@
+<div class="container">
+    <div class="styled-image"></div>
+    <div class="form-cont">
+        <h3 style="color: #166cdb;">Registrati</h3>
+        <p style="color: #9B999D">Inserisci i tuoi dati e procedi con la registrazione</p>
+
+        <mat-divider></mat-divider>
+        <!--<button mat-raised-button (click)="isOptional = !isOptional">
+            {{!isOptional ? 'Enable optional steps' : 'Disable optional steps'}}
+        </button>-->
+
+        <mat-stepper linear #stepper ><!--[selectedIndex]="2"-->
+            <ng-template matStepperIcon="edit">
+                <mat-icon>check</mat-icon>
+            </ng-template>
+            <mat-step [stepControl]="firstFormGroup" [editable]="true">
+                <form [formGroup]="firstFormGroup" autocomplete="off">
+                    <ng-template matStepLabel>Accesso</ng-template>
+                    <h5 style="color: #166cdb">CREDENZIALI DI ACCESSO</h5>
+                    <div class="form-input-row" style="margin: 0px !important;">
+                        <mat-form-field appearance="outline" style="flex-grow: 1; padding-right: 5px">
+                            <mat-label>Email</mat-label>
+                            <input matInput placeholder="ex@example.com" formControlName="email" name="email" required maxlength="128">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" style="flex-grow: 1; padding-left: 5px">
+                            <mat-label>Tipologia Utente</mat-label>
+                            <mat-select  [value]="'user'" (selectionChange)="onUsertypeChanged($event)" formControlName="usertype">
+                                <mat-option value="user" >User</mat-option>
+                                <mat-option value="admin">Admin</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-input-row">
+                    <mat-form-field appearance="outline" style="flex-grow: 1; padding-right: 5px">
+                        <mat-label>Enter your password</mat-label>
+                        <input name="password" matInput [type]="hide ? 'password' : 'text'" formControlName="password" required maxlength="64">
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-error>{{
+                            firstFormGroup.controls['password'].value === ""
+                                ? "Campo obbligatorio"
+                                : (firstFormGroup.controls['password'].hasError("minlength") ? "Almeno 8 caratteri": "")
+                            }}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="flex-grow: 1; padding-left: 5px">
+                        <mat-label>Enter your password again</mat-label>
+                        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password2" required maxlength="64">
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-error>{{
+                            firstFormGroup.controls['password2'].hasError("passwordMismatch") ? "Le password devono coincidere" : ""
+                            }}</mat-error>
+                    </mat-form-field>
+                    </div>
+                    <section class="example-section" style="margin-left: -10px;">
+                        <mat-checkbox class="example-margin" formControlName="checkbox">Ho preso visione dell'<a style="color: #a6039b !important;" href="#">Informativa Privacy</a></mat-checkbox>
+                    </section>
+
+                    <mat-error>{{
+                        firstFormGroup.controls['email'].hasError("pattern") ? "Email non valida" : ""
+                        }}</mat-error>
+
+                    <p class="error">{{this.log}}</p>
+                    <p class="error">{{this.log2}}</p>
+
+                    <p style="margin: 10px 0 10px 0; color: #9B999D">Campi obbligatori*</p>
+
+
+                    <mat-divider></mat-divider>
+                    <div class="bottom-form-bar">
+                        <button mat-button color="primary" style="color: #166cdb !important;" (click)="goToLogin()">RITORNA ALLA LOGIN</button>
+                        <button mat-raised-button #btn1 matStepperNext style="background-color: #a6039b; color: white">AVANTI</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup" [optional]="isOptional">
+                <form [formGroup]="secondFormGroup" autocomplete="off">
+                    <ng-template matStepLabel>Anagrafica</ng-template>
+                    <h5 style="color: #166cdb">DATI ANAGRAFICI</h5>
+                    <div class="form-input-row">
+                        <mat-form-field appearance="outline" style="flex-grow: 1; padding-right: 5px">
+                            <mat-label>Cognome</mat-label>
+                            <input matInput placeholder="" formControlName="lastname" required maxlength="255">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" style="flex-grow: 1; padding-right: 5px">
+                            <mat-label>Nome</mat-label>
+                            <input matInput placeholder="" formControlName="firstname" required maxlength="255">
+                        </mat-form-field>
+                    </div>
+                    <div class="form-input-row">
+                        <mat-form-field appearance="outline" style="flex-grow: 1; padding-right: 2.5px;">
+                            <input matInput [matDatepicker]="picker" formControlName="birthday" placeholder="Data di nascita">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" style="flex-grow: 1; padding-left: 2.5px; padding-right: 5px;">
+                            <mat-label>Genere</mat-label>
+                            <mat-select [value]="'UOMO'" formControlName="genre" style="display: none">
+                                <mat-option value="UOMO" >UOMO</mat-option>
+                                <mat-option value="DONNA">DONNA</mat-option>
+                            </mat-select>
+                            <button mat-icon-button matSuffix>
+                                <mat-icon style="color: grey">{{'arrow_drop_down'}}</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+
+
+                    <div class="form-input-row">
+                        <mat-form-field appearance="outline" style="flex-grow: 1; padding-right: 5px">
+                            <mat-label>Nazione</mat-label>
+                            <input matInput placeholder="" formControlName="nation" required maxlength="255">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" style="flex-grow: 1; padding-right: 5px">
+                            <mat-label>Provincia</mat-label>
+                            <input matInput placeholder="" formControlName="province" required maxlength="2">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" style="flex-grow: 1; padding-right: 5px">
+                            <mat-label>Città</mat-label>
+                            <input matInput placeholder="" formControlName="city" required maxlength="255">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" style="flex-grow: 1; padding-right: 5px">
+                            <mat-label>Indirizzo</mat-label>
+                            <input matInput placeholder="" formControlName="address" required maxlength="255">
+                        </mat-form-field>
+                    </div>
+
+
+                    <p class="error">{{this.log}}</p>
+                    <p class="error">{{this.log2}}</p>
+                    <p style="margin: 10px 0 10px 0; color: #9B999D">Campi obbligatori*</p>
+                    <mat-divider></mat-divider>
+                    <div class="bottom-form-bar">
+                        <button mat-stroked-button matStepperPrevious color="primary">INDIETRO</button>
+
+                        <button mat-raised-button matStepperNext *ngIf="!isUserSignup; else isNotUserBlock" style="background-color: #a6039b; color: white">AVANTI</button>
+                        <ng-template #isNotUserBlock>
+                            <button mat-raised-button matStepperNext style="background-color: #a6039b; color: white" [disabled]="isLastButtonDisabled" (click)="register()" >
+                                <mat-spinner *ngIf="apiLoading" style="width: 14px; height: 14px; color: white;"></mat-spinner>
+                                <span *ngIf="!apiLoading" >CONFERMA</span>
+                            </button>
+                        </ng-template>
+                    </div>
+                </form>
+            </mat-step>
+            <div *ngIf="!isUserSignup">
+            <mat-step [stepControl]="thirdFormGroup" >
+                <form [formGroup]="thirdFormGroup" autocomplete="off">
+                <ng-template matStepLabel>Azienda</ng-template>
+                <h5 style="color: #166cdb">INFO</h5>
+                <div class="form-input-row">
+                    <mat-form-field appearance="outline" style="flex-grow: 1; padding-right: 0;">
+                        <mat-label>Nome</mat-label>
+                        <input matInput placeholder="" formControlName="factory_name" required maxlength="255">
+                    </mat-form-field>
+                </div>
+
+                <div class="form-input-row">
+                    <mat-form-field class="example-full-width" appearance="outline" style="flex-grow: 1; padding-right: 0;">
+                        <mat-label>Descrizione</mat-label>
+                        <textarea matInput placeholder="" rows="3" style="resize: none" required formControlName="factory_description" maxlength="255"></textarea>
+                    </mat-form-field>
+                </div>
+
+                <div class="form-input-row">
+                    <mat-form-field appearance="outline" style="flex-grow: 1; padding-right: 5px">
+                        <mat-label>Provincia</mat-label>
+                        <input matInput placeholder="" formControlName="factory_province" required maxlength="2">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="flex-grow: 1; padding-right: 5px">
+                        <mat-label>Città</mat-label>
+                        <input matInput placeholder="" formControlName="factory_city" required maxlength="255">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="flex-grow: 1; padding-right: 5px">
+                        <mat-label>Indirizzo</mat-label>
+                        <input matInput placeholder="" formControlName="factory_address" required maxlength="255">
+                    </mat-form-field>
+                </div>
+                    <p class="error">{{this.log}}</p>
+                    <p class="error">{{this.log2}}</p>
+                    <p style="margin: 10px 0 10px 0; color: #9B999D">Campi obbligatori*</p>
+                    <mat-divider></mat-divider>
+                    <div class="bottom-form-bar">
+                        <button mat-stroked-button matStepperPrevious color="primary">INDIETRO</button>
+                        <button mat-raised-button matStepperNext style="background-color: #a6039b; color: white" [disabled]="isLastButtonDisabled" (click)="register()" >
+                        <mat-spinner *ngIf="apiLoading" style="width: 14px; height: 14px; color: white;"></mat-spinner>
+                        <span *ngIf="!apiLoading" >CONFERMA</span>
+                        </button>
+                        <!--style="background-color: #a6039b; color: white"-->
+                    </div>
+                </form>
+                <!--<p>You are now done.</p>
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button (click)="stepper.reset()">Reset</button>
+                </div>-->
+            </mat-step>
+            </div>
+        </mat-stepper>
+
+
+
+
+
+    </div>
+
+
+
+</div>

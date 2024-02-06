@@ -1,0 +1,30 @@
+
+<div class="container">
+  <div *ngIf="!hasButton" class="body" style="padding-top: 0px; align-items: flex-end;">
+    <div style="display: flex; text-align: right; border-radius: 100%; width: 32px; height: 32px; background-color: #F5F5F5; position: absolute; align-items: center; justify-content: center; cursor: pointer;">
+      <mat-icon class="close-icon" style="width: fit-content; height: fit-content;" (click)="closeDialog()">close</mat-icon>
+    </div>
+    <div class="line">
+      <p></p>
+    </div>
+  </div>
+  <div class="body">
+    <div style="display: flex; border-radius: 100%; width: 64px; height: 64px; background-color: #EAF2EA; position: absolute; align-items: center; justify-content: center; cursor: pointer;">
+      <mat-icon style="color:green; font-size: 40px;width: fit-content; height: fit-content;">check</mat-icon>
+    </div>
+    <br>
+  </div>
+  <div class="body">
+    <h3 style="color: green">{{ title }}</h3>
+    <p style="text-align: center; color: grey">{{body}}</p>
+    <div *ngIf="hasButton" class="body">
+      <button
+              style="padding-right: 30px; padding-left: 30px; background-color: #a6039b; color: white; float: right;"
+              mat-raised-button
+              color="primary"
+              (click)="closeDialog();"
+              class="button-apply"
+      >{{ button  }}</button>
+    </div>
+  </div>
+</div>

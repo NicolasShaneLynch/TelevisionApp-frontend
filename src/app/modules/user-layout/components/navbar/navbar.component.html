@@ -1,0 +1,70 @@
+<div class="calc-width">
+    <mat-toolbar color="accent">
+        <mat-toolbar-row>
+            <figure (click)="logoClickEvent()">
+                <img src="../../../../../assets/images/television_app_logo.svg" style="width: 120px; height: 60px;"/>
+            </figure>
+            <span class="example-spacer"></span>
+            <div class="mr-12">
+                <!-- <app-lista-notifiche></app-lista-notifiche> -->
+            </div>
+            <div class="flex-items" >
+                <i class="material-icons" (click)="cartClick()" style="margin-right: 25px; cursor: pointer; user-select: none;">shopping_cart</i>
+                <button mat-raised-button color="primary" (click)="accediButtonClick()" style="background-color: #a6039b" *ngIf="!isLogged">ACCEDI</button>
+                <div class="flex-items" *ngIf="isLogged" [matMenuTriggerFor]="menu">
+                    <div class="round-img-profile">
+                        <div class="profile-avatar">
+                            <p>
+                                <img *ngIf="imageData !== ''" [src]="imageData" style="height: 100%; width: 100%;" alt="">
+                                <!--{{this.username.split('@')[0][0].toUpperCase() + this.username.split('@')[1][0].toUpperCase()}}-->
+                                {{this.userinfo.name[0] + this.userinfo.lastname[0]}}
+                            </p>
+                        </div>
+                    </div>
+                    <span
+                    >
+          {{this.userinfo.name}} {{this.userinfo.lastname}}
+          </span>
+                    <button mat-icon-button class="example-icon">
+                        <mat-icon>expand_more</mat-icon>
+                    </button>
+
+                    <mat-menu class="only-width account-menu" #menu="matMenu">
+                        <button mat-menu-item (click)="matMenuMyProfileClickEvent()">
+                            <mat-icon>face</mat-icon>
+                            MyProfile
+                        </button>
+                        <button mat-menu-item (click)="doLogout()">
+                            <mat-icon>logout</mat-icon>
+                            Logout
+                        </button>
+                    </mat-menu>
+                </div>
+            </div>
+
+
+            <!--<div class="flex-items" [matMenuTriggerFor]="menu">
+                <div class="round-img-profile">
+                    <div class="profile-avatar">
+                        <p>
+                            ciao
+                        </p>
+                    </div>
+                </div>
+                <span>
+          Username
+          </span>
+                <button mat-icon-button class="example-icon">
+                    <mat-icon>expand_more</mat-icon>
+                </button>
+                <mat-menu class="only-width account-menu" #menu="matMenu">
+
+                    <button mat-menu-item (click)="{}">
+                        <mat-icon>logout</mat-icon>
+                        Logout
+                    </button>
+                </mat-menu>
+            </div>-->
+        </mat-toolbar-row>
+    </mat-toolbar>
+</div>

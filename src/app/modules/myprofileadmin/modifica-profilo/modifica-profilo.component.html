@@ -1,0 +1,144 @@
+<div class="container2">
+     <div class="compX" style="position: relative">
+         <div class="round-img-profile" *ngIf="hasImage">
+             <img [src]="imageData" style="width: 64px; height: 64px; border-radius: 32px; object-fit: cover; object-position: center;"/>
+         </div>
+         <div class="round-img-profile" *ngIf="!hasImage">
+             <div class="flex-items">{{this.name[0].toUpperCase() +" "+ this.lastname[0].toUpperCase()}}</div>
+         </div>
+         <input type="file" #fileInput style=" display: none" (change)="onFileSelected($event)">
+         <div (click)="openFileInput()" style="border-radius: 50%; width: 28px; height: 28px; background-color: #a6039b; bottom: 4px; right: -8px; position: absolute; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+             <mat-icon style="color:white; font-size: 15px;width: fit-content; height: fit-content;">edit</mat-icon>
+         </div>
+     </div>
+     <div class="comp2" style="padding-left: 15px">
+         <h3>{{name}} {{lastname}}</h3>
+     </div>
+     <div class="comp4">
+        <div class="button-confirm-container">
+            <button mat-raised-button style="padding-right: 80px; padding-left: 80px; background-color: #a6039b; color: white; float: right;" (click)="update()">SALVA</button>
+        </div>
+     </div>
+</div>
+<br>
+<br>
+<form [formGroup]="FormGroup">
+    <div class="container2">
+        <p class="p">Informazioni Generali</p>
+    </div>
+    <div class="container2">
+        <mat-form-field appearance="outline" style="flex-grow: 1; padding-right: 10px;">
+            <mat-label>Cognome</mat-label>
+            <input matInput formControlName="lastname" name="lastname" required maxlength="255">
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="flex-grow: 1; padding-right: 10px;">
+            <mat-label>Nome</mat-label>
+            <input matInput formControlName="firstname" name="firstname" required maxlength="255">
+        </mat-form-field>
+    </div>
+    <div class="container2">
+        <mat-form-field appearance="outline" style="flex-grow: 1; padding-right: 10px;">
+            <mat-label>Genere</mat-label>
+            <mat-select  [value]=gender formControlName="genre" style="display: none;">
+                <mat-option value="man" >Uomo</mat-option>
+                <mat-option value="woman">Donna</mat-option>
+            </mat-select>
+            <button mat-icon-button matSuffix>
+                <mat-icon style="color: grey">{{'arrow_drop_down'}}</mat-icon>
+            </button>
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="flex-grow: 1; padding-right: 10px;">
+            <mat-label>Data</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="birthday" placeholder="Scegli data">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </div>
+    <div class="container2">
+        <mat-form-field appearance="outline" style="flex-grow: 1; padding-right: 10px;">
+            <mat-label>Nazione</mat-label>
+            <input matInput formControlName="nation" required maxlength="255">
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="flex-grow: 1; padding-right: 10px;">
+            <mat-label>Provincia</mat-label>
+            <input matInput formControlName="province" required maxlength="2">
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="flex-grow: 1; padding-right: 10px;">
+            <mat-label>Città</mat-label>
+            <input matInput formControlName="city" required maxlength="255">
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="flex-grow: 1; padding-right: 10px;">
+            <mat-label>Indirizzo</mat-label>
+            <input matInput formControlName="address" required maxlength="255">
+        </mat-form-field>
+    </div>
+    <div class="container2">
+        <p class="p3">{{INPUT_CONSTANT.campi_obbligatori}}</p>
+    </div>
+    <br><br>
+    <div class="container2">
+        <p class="error">{{log}}</p>
+    </div>
+    <div class="container2">
+        <p class="p">Informazioni Accesso</p>
+    </div>
+    <div class="container2">
+        <mat-form-field appearance="outline" style="flex-grow: 1; padding-right: 10px; width: 700px">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" name="email" required maxlength="128">
+            <mat-error>{{
+                FormGroup.controls['email'].hasError("pattern")
+                    ? errorsConstant.input.email_pattern
+                    : FormGroup.controls['email'].value === ""
+                        ? errorsConstant.required
+                        : FormGroup.controls['email'].hasError("minlength")
+                            ? errorsConstant.input.min_length_3
+                            : errorsConstant.input.max_length_128
+                }}</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="flex-grow: 1; padding-right: 10px; width: 700px">
+            <mat-label>Tipologia Utente</mat-label>
+            <mat-select  [value]=usertype (selectionChange)="onUsertypeChanged($event)" formControlName="usertype">
+                <mat-option value="user" >User</mat-option>
+                <mat-option value="admin">Admin</mat-option>
+                <mat-option value="superadmin">SuperAdmin</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="container2">
+        <mat-form-field appearance="outline" style="flex-grow: 1; padding-right: 10px;">
+            <mat-label>Password</mat-label>
+            <input name="password" matInput [type]="hide ? 'password' : 'text'" formControlName="password" required maxlength="64">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error>{{
+                FormGroup.controls['password'].value === ""
+                    ? "Campo obbligatorio"
+                    : (FormGroup.controls['password'].hasError("minlength") ? "Almeno 8 caratteri": "")
+                }}</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="flex-grow: 1; padding-right: 10px;">
+            <mat-label>Conferma password</mat-label>
+            <input name="password2" matInput [type]="hide ? 'password' : 'text'" formControlName="password2" required maxlength="64">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error>{{
+                FormGroup.controls['password2'].hasError("passwordMismatch") ? "Le password devono coincidere" : ""
+                }}</mat-error>
+        </mat-form-field>
+    </div>
+</form>
+<br>
+<div class="container2">
+    <div class="comp1">
+        <p class="p">Gestione Account</p>
+        <p class="p2">Puoi eliminare il tuo account e tutti i dati associati ad esso</p>
+    </div>
+    <div class="comp4">
+        <div class="button-confirm-container">
+            <button mat-raised-button style="font-weight: bold; padding-right: 30px; padding-left: 30px; border: 1px solid #da0b00; color: #da0b00; background-color: white; float: right;" (click)="elimina()">ELIMINA</button>
+        </div>
+    </div>
+</div>

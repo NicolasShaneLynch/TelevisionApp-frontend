@@ -1,0 +1,39 @@
+<div class="title">
+    <h3>{{product.name}}</h3>
+    <button mat-raised-button (click)="modifcaProdotto()">MODIFICA</button>
+</div>
+
+<div class="detail-container">
+
+    <div class="header-container">
+        <div class="product-info">
+
+            <div class="images"
+                 *ngFor="let image of product.images | slice: 1">
+                <img class="image" [src]="image.data" alt="">
+            </div>
+        </div>
+
+        <div class="big-image-container">
+            <img class="big-image"
+                 style="height: 100%; width: 450px; background-color: #0A4A89; object-fit: cover;"
+                 src="{{product.images[0].data}}">
+        </div>
+
+        <div class="product-details">
+            <span class="title-span" >TIPOLOGIA</span>
+            <span class="body-span" >{{product.type}}</span>
+            <span class="title-span">DESCRIZIONE</span>
+            <span class="body-span">{{product.description}}</span>
+            <!--<div class="button-confirm-container">
+                <button mat-raised-button style="background-color: #a6039b; color: white;">AGGIUNGI AL
+                    CARRELLO
+                </button>
+            </div>-->
+        </div>
+        <div class="product-details">
+            <span class="title-span" >PREZZO</span>
+            <span class="body-span" >{{product.price}}</span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,62 @@
+<div class="container0">
+  <div class="container1">
+    <div class="compX" style="position: relative">
+      <div class="round-img-profile" *ngIf="hasImage">
+        <img [src]="imageData" style="width: 64px; height: 64px; border-radius: 32px; object-fit: cover; object-position: center;"/>
+      </div>
+      <div class="round-img-profile" *ngIf="!hasImage">
+        <div class="flex-items">{{this.name[0].toUpperCase() +" "+ this.lastname[0].toUpperCase()}}</div>
+      </div>
+    </div>
+    <div class="comp2" style="padding-left: 15px">
+      <h3>{{name}} {{lastname}}</h3>
+    </div>
+    <div class="comp4">
+      <div class="button-confirm-container">
+        <button mat-raised-button style="font-weight: bold; padding-right: 20px; padding-left: 20px; border: 1px solid #a6039b; color: #a6039b; background-color: white; float: right;" (click)="modificaUtente(id)">MODIFICA</button>
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+  <div class="container1">
+    <div class="comp1">
+      <h4 style="color: #a2a2a2;">EMAIL</h4>
+      <p class="p">{{email}}</p>
+    </div>
+    <div class="comp2">
+      <h4 style="color: #a2a2a2;">GENERE</h4>
+      <p class="p">{{gender}}</p>
+    </div>
+    <div class="comp3">
+      <h4 style="color: #a2a2a2; ">INDIRIZZO</h4>
+      <p class="p">{{address}}</p>
+    </div>
+    <div class="comp4">
+      <h4 style="color: #a2a2a2; ">DATA CREAZIONE</h4>
+      <p class="p">{{date}}</p>
+    </div>
+  </div>
+</div>
+<br><br><br>
+<div *ngIf="isAdmin">
+  <div class="container0">
+    <div class="container1">
+      <div class="comp1">
+        <h3>{{factory_name}}</h3>
+      </div>
+    </div>
+    <br>
+    <br>
+    <div class="container1">
+      <div class="comp1">
+        <h4 style="color: #a2a2a2;">INDIRIZZO</h4>
+        <p class="p">{{factory_address}}</p>
+      </div>
+      <div class="comp2">
+        <h4 style="color: #a2a2a2;">DESCRIZIONE</h4>
+        <p class="p">{{factory_description}}</p>
+      </div>
+    </div>
+  </div>
+</div>

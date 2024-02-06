@@ -1,0 +1,71 @@
+<div class="cont" style="height: 100vh">
+
+<div class="header-image" >
+    <span class="main-text">
+        TROVA IL PROGRAMMA<br>CHE FA AL CASO TUO
+    </span>
+</div>
+
+<div class="lista-container">
+
+    <div class="filter-container">
+
+        <div class="left-filter-container">
+            <mat-form-field appearance="outline" style="flex-grow: 1; padding-left: 5px">
+                <!--<mat-label>Tipologia Utente</mat-label>-->
+                <mat-select [value]="'ORARIO'" >
+                    <mat-option value="ORARIO" >ORARIO</mat-option>
+                    <mat-option value="woman">Woman</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline" style="flex-grow: 1; padding-left: 5px">
+                <mat-select [value]="'COSTO'" [(ngModel)]="price_filter" >
+                    <mat-option value="COSTO" >COSTO</mat-option>
+                    <mat-option value="10">10</mat-option>
+                    <mat-option value="20">20</mat-option>
+                    <mat-option value="50">50</mat-option>
+                    <mat-option value="100">100</mat-option>
+                    <mat-option value="1000">1000</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline" style="flex-grow: 1; padding-left: 5px">
+                <mat-select [(ngModel)]="type_filter">
+                    <mat-option value="TIPOLOGIA" >TIPOLOGIA</mat-option>
+                    <mat-option value="LIVE">LIVE</mat-option>
+                    <mat-option value="VOD">VOD</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="right-filter-container">
+            <form class="example-form">
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Ricerca prodotti</mat-label>
+                    <input type="search" matInput placeholder="" name="search" [(ngModel)]="search_filter" maxlength="255">
+                    <mat-icon matSuffix>search</mat-icon>
+                </mat-form-field>
+            </form>
+
+        </div>
+    </div>
+
+    <div class="products-container">
+
+        <mat-card class="example-card" *ngFor="let prodotto of prodotti |  filtroPerInizioNome:search_filter | filtroPerTipo:this.type_filter | filtroPerPrezzo: price_filter">
+            <img style="height: 150px; object-fit: cover; object-position: center" mat-card-image src="{{prodotto.images[0].data}}" alt="Photo of a Shiba Inu">
+            <mat-card-content>
+                <p style="font-weight: bold; margin-top: 10px;">{{prodotto.name}}</p>
+                <p style="color: #9B999D; margin: 10px 0 30px 0;">{{prodotto.type}}</p>
+                <p style="font-weight: bold; margin-bottom: 10px;">€ {{prodotto.price}}</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button color="accent" (click)="buyButton(prodotto.id)" style="width: 100%; margin: 5px; background-color: #a6039b; color: white;">ACQUISTA</button>
+            </mat-card-actions>
+        </mat-card>
+
+
+    </div>
+
+</div>
+
+</div>

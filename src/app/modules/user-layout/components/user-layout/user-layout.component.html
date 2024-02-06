@@ -1,0 +1,62 @@
+<app-navbar (cartClickEvent)="openCart()" ></app-navbar>
+<mat-sidenav-container class="example-container" autosize [hasBackdrop]="true" >
+
+    <mat-sidenav #drawer class="example-sidenav" mode="over" position="end" >
+        <!--<button (click)="showFiller = !showFiller" mat-raised-button>
+            Toggle extra text
+        </button>-->
+
+
+        <div class="cart-container" style="max-height: 85vh; overflow-y: auto;">
+
+            <div class="top-cart-container">
+                <h4>Carrello</h4>
+                <div class="items-container" *ngFor="let p of Array.from(this.cartProductsMap.values())">
+
+                <div class="item-card-cart" style="display: flex; padding:10px; justify-content: space-between">
+                    <img style="height: 64px; width: 64px; background-color: #1d53bc; object-fit: cover; object-position: center;" src="{{p.images[0].data}}"/>
+                    <div class="item-card-description" style="padding: 5px;">
+                        <h5>{{p.name}}</h5>
+                        <p>Orario  00/00/0000 - 00:00</p>
+                    </div>
+                    <div class="prova">
+                        <p>{{p.price}} €</p>
+                        <i (click)="deleteItemCart(p.id)" class="material-icons" style="cursor: pointer; user-select: none; display: inline-flex; justify-content: end;width: 100%;">delete</i>
+
+                    </div>
+                </div>
+                <mat-divider></mat-divider>
+
+                </div>
+            </div>
+
+            <div class="bottom-cart-container" >
+                <div class="price">
+                    <div class="cont1" style="display: flex; justify-content: space-between; margin: 5px;">
+                        <p style="color: #cccccc">Sub Totale: </p>
+                        <p style="color: #cccccc"> {{cartTotal}} €</p>
+                    </div>
+
+                    <div class="cont2" style="display: flex; justify-content: space-between; margin: 5px;">
+                        <p>Totale: </p>
+                        <p> {{cartTotal}} €</p>
+                    </div>
+
+                </div>
+                <button mat-raised-button style="background-color: #a6039b" color="primary" (click)="cartButtonConfirmOrder()">CONCLUDI ORDINE</button>
+                <button mat-stroked-button color="primary" style="border-color: #1d53bc" (click)="cartButtonContinueNavigation()">CONTINUA A NAVIGARE</button>
+            </div>
+
+
+        </div>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content style="max-height: 100vh; overflow-y: auto;">
+        <div style="height: 100%; width: 100%;">
+            <router-outlet></router-outlet>
+        </div>
+
+
+    </mat-sidenav-content>
+</mat-sidenav-container>

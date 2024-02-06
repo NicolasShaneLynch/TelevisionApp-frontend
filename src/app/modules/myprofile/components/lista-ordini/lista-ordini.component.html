@@ -1,0 +1,29 @@
+<div class="container" style="padding: 36px 24px 36px 24px">
+    <h4 style="padding-left: 10px;">Storico</h4>
+    <ng-container
+            *ngIf="dataSource?.data?.length; else noResult"
+    >
+        <app-generic-table
+                [pageIndex]="pageIndex"
+                [size]="size"
+                [totalElements]="totalElements"
+                [dataSource]="dataSource"
+                [displayedColumns]="displayedColumns"
+                [cellHeadTypes]="cellHeadTypes"
+                [hasSearch]="false"
+                [hasSelect]="false"
+                (emitChangePage)="changePage($event)"
+        ></app-generic-table>
+        <!--     [selectLabel]="selectLabel"
+            [selectOptions]="selectOptions"
+            [sortedItems]="sortedItems"
+            [hasDownload]="true"
+          (emitSearchEvent)="searchEvent($event)"
+          (emitSelectedOption)="getSelectedOption($event)" -->
+    </ng-container>
+    <ng-template #noResult>
+        <div class="body mt-24">
+            <span>{{ "Nessun Risultato" | uppercase }}</span>
+        </div>
+    </ng-template>
+</div>

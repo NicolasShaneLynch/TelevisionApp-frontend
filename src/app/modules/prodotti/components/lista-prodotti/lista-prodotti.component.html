@@ -1,0 +1,33 @@
+<div class="container">
+    <ng-container
+            *ngIf="dataSource?.data?.length; else noResult"
+    >
+        <div class="chart-flex-container">
+            <app-chart></app-chart>
+        </div>
+        <app-generic-table
+                [hasGroupActions]="hasGroupActions"
+                [pageIndex]="pageIndex"
+                [size]="size"
+                [totalElements]="totalElements"
+                [dataSource]="dataSource"
+                [displayedColumns]="displayedColumns"
+                [cellHeadTypes]="cellHeadTypes"
+                [hasSearch]="false"
+                [hasSelect]="false"
+                (emitChangePage)="changePage($event)"
+                (emitApplicaAzioniDiGruppo)="applicaAzioniDiGruppo($event)"
+        ></app-generic-table>
+        <!--     [selectLabel]="selectLabel"
+            [selectOptions]="selectOptions"
+            [sortedItems]="sortedItems"
+            [hasDownload]="true"
+          (emitSearchEvent)="searchEvent($event)"
+          (emitSelectedOption)="getSelectedOption($event)" -->
+    </ng-container>
+    <ng-template #noResult>
+        <div class="body mt-24">
+            <span>{{ resultConstant.nessun_risultato | uppercase }}</span>
+        </div>
+    </ng-template>
+</div>

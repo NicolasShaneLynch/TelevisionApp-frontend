@@ -1,0 +1,74 @@
+<div class="detail-container">
+
+    <mat-card class="detail-card">
+
+        <div class="header-container" style="margin: 10px">
+            <div class="part1" style="margin: 15px 15px 30px 15px;">
+                <div class="check_green_icon"></div>
+                <h4>Ordine Ricevuto!</h4>
+                <p>Il tuo ordine n°{{dettaglio.id}} è andato a buon fine.</p>
+                <mat-divider></mat-divider>
+            </div>
+
+            <div class="part2" style="margin: 15px 15px 30px 15px;">
+                <h4>Info utente</h4>
+                <p>DATI DI RESIDENZA</p>
+                <p>Via Colle Urbano 7 - Roma (RM)</p>
+                <mat-divider></mat-divider>
+            </div>
+
+            <div class="part3" style="margin: 15px 15px 30px 15px;">
+                <h4>Info prodotti</h4>
+                <div class="item-container" *ngFor="let p of dettaglio.products">
+                    <div class="item-card-cart" style="display: flex; padding:10px; justify-content: space-between">
+                        <div style="display: flex">
+                            <img style="height: 64px; width: 64px; background-color: #1d53bc" src="{{p.images[0].data}}"/>
+                            <div class="item-card-description" style="padding: 5px;">
+                            <h5>{{p.name}}</h5>
+                            <p>Orario  00/00/0000 - 00:00</p>
+                        </div>
+                        </div>
+                        <div class="prova">
+                            <p>{{p.price}} €</p>
+                        </div>
+                    </div>
+
+                    <mat-divider></mat-divider>
+                </div>
+                <!--<div class="item-card-cart" style="display: flex; padding:10px; justify-content: space-between">
+                    <div style="display: flex">
+                        <div style="height: 64px; width: 64px; background-color: #1d53bc"></div>
+                        <div class="item-card-description" style="padding: 5px;">
+                            <h5>Prodotto X</h5>
+                            <p>Orario  00/00/0000 - 00:00</p>
+                        </div>
+                    </div>
+                    <div class="prova">
+                        <p>0.00 $</p>
+                    </div>
+                </div>
+                <mat-divider></mat-divider>-->
+            </div>
+
+            <div class="part4" style="margin: 15px 15px 30px 15px;">
+                <div class="cont1" style="display: flex; justify-content: space-between; margin: 5px;">
+                    <p style="color: #cccccc">Sub Totale: </p>
+                    <p style="color: #cccccc"> {{orderTotal}} €</p>
+                </div>
+
+                <div class="cont2" style="display: flex; justify-content: space-between; margin: 5px;">
+                    <p>Totale: </p>
+                    <p> {{orderTotal}} €</p>
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+
+
+    </mat-card>
+
+</div>

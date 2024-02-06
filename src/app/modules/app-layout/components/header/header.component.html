@@ -1,0 +1,37 @@
+<div class="calc-width">
+  <mat-toolbar color="accent">
+    <mat-toolbar-row>
+      <div class="styled_logo"></div>
+      <span class="example-spacer"></span>
+      <div class="mr-12">
+        <!-- <app-lista-notifiche></app-lista-notifiche> -->
+      </div>
+      <div class="flex-items" [matMenuTriggerFor]="menu">
+        <div class="round-img-profile" *ngIf="hasImage">
+            <img [src]="imageData" style="width: 40px; height: 40px; border-radius: 32px; object-fit: cover; object-position: center;"/>
+        </div>
+        <div class="round-img-profile" *ngIf="!hasImage">
+          {{this.name.toUpperCase()[0] +" "+ this.lastname.toUpperCase()[0]}}
+        </div>
+        <span
+          >
+          {{ (this.name+" "+this.lastname) || "" | titlecase }}
+          </span
+        >
+        <button mat-icon-button class="example-icon">
+          <mat-icon>expand_more</mat-icon>
+        </button>
+        <mat-menu class="only-width account-menu" #menu="matMenu">
+          <button mat-menu-item (click)="matMenuMyProfileClickEvent()">
+            <mat-icon>face</mat-icon>
+            MyProfile
+          </button>
+          <button mat-menu-item (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            {{ labelConstant.logout }}
+          </button>
+        </mat-menu>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>

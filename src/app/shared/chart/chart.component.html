@@ -1,0 +1,14 @@
+<div class="button-container">
+    <mat-form-field appearance="outline">
+        <mat-label>Mese</mat-label>
+        <mat-select class="mat-select">
+            <ng-container *ngFor="let month of monthsAbbreviated">
+                <mat-option [value]="month" (click)="onSelect(month)">{{month}}</mat-option>
+            </ng-container>
+        </mat-select>
+
+    </mat-form-field>
+</div>
+<div class="chart-container">
+    <canvas  id="MyChart" >{{ chart }}</canvas>
+</div>

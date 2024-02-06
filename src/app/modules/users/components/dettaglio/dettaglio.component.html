@@ -1,0 +1,56 @@
+<div class="detail-container">
+
+    <mat-card class="detail-card">
+
+        <div class="header-container">
+            <div class="product-info">
+
+                <div class="images">
+                    <!--4 imgs here-->
+                    <div *ngFor="let i of product.images | slice:1">
+                        <img [src]="i.data" style="height: 124px; width: 124px; object-fit: cover; object-position: center;" alt=""/>
+                    </div>
+
+                </div>
+
+                <div class="big-image-container">
+                    <img class="big-image" style="height: 100%; width: 450px; background-color: #0A4A89; object-fit: cover; object-position: center" src="{{product.images[0].data}}">
+                </div>
+
+                <div class="product-details">
+                    <div>
+                    <h3>{{product.name}}</h3>
+                    <h3>{{product.price}} €</h3>
+                    <h5 style="color: #a2a2a2;">TIPOLOGIA</h5>
+                        <p>{{product.type}}</p>
+                    <h4 style="color: #a2a2a2;">Codice Prodotto</h4>
+                        <p>{{product.id}}</p>
+                    <h4 style="color: #a2a2a2; ">Descrizione</h4>
+                    <p style="max-width: 510px">{{product.description}}</p>
+                    </div>
+                    <div class="button-confirm-container">
+                        <button mat-raised-button style="background-color: #a6039b; color: white;" (click)="addToCart()">AGGIUNGI AL CARRELLO</button>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="correlated-products">
+            <h3>Prodotti correlati</h3>
+                <div class="correlated-product-images" style="display: flex;">
+                    <!--4 imgs here-->
+                    <div class="image" style="height: 124px; width: 124px; background-color: #0A4A89"></div>
+                    <div class="image" style="height: 124px; width: 124px; background-color: #0A4A89"></div>
+                    <div class="image" style="height: 124px; width: 124px; background-color: #0A4A89"></div>
+                    <div class="image" style="height: 124px; width: 124px; background-color: #0A4A89"></div>
+                </div>
+
+
+        </div>
+
+
+    </mat-card>
+
+</div>
