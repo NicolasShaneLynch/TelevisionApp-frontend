@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkfrontend_contrader=self.webpackChunkfrontend_contrader||[]).push([[517],{8517:(d,t,n)=>{n.r(t),n.d(t,{routes:()=>o});const o=[{path:"",loadComponent:()=>n.e(259).then(n.bind(n,6259)),children:[{path:"",title:"Login",loadComponent:()=>n.e(625).then(n.bind(n,3625))}]}]}}]);
