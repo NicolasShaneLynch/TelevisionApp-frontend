@@ -5,7 +5,7 @@ COPY package*.json ./
 RUN npm install
 RUN npm ci
 COPY . .
-RUN npm run build --prod
+RUN npm run build 
 
 # stage 2
 
