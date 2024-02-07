@@ -6,7 +6,7 @@ COPY package*.json ./
 RUN npm install
 RUN npm ci
 COPY . .
-RUN ls
+RUN echo "DEBUG" && pwd && ls 
 RUN npm run build
 
 # stage 2
