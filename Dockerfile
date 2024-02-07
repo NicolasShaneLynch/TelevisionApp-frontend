@@ -4,7 +4,6 @@ RUN mkdir /app
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
-RUN npm ci
 COPY . .
 RUN echo "DEBUG" && pwd && ls 
 RUN npm run build
