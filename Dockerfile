@@ -1,12 +1,13 @@
 FROM node:alpine AS build
 ARG ENV
-#WORKDIR /app
+RUN mkdir /app
+WORKDIR /app
 COPY package*.json ./
 RUN npm install
 RUN npm ci
 COPY . .
 RUN ls
-RUN npm run build 
+RUN npm run build
 
 # stage 2
 
