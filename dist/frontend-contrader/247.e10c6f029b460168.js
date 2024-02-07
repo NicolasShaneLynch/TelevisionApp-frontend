@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkfrontend_contrader=self.webpackChunkfrontend_contrader||[]).push([[247],{4247:(d,t,n)=>{n.r(t),n.d(t,{routes:()=>o});const o=[{path:"",loadComponent:()=>n.e(366).then(n.bind(n,366))}]}}]);
