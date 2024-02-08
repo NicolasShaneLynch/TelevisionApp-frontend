@@ -1,5 +1,5 @@
-# Stage 1: Build Angular app
-FROM registry.access.redhat.com/ubi8/nodejs-18:1-71.1695741533 as build-stage
+# Import the base image as UBI-Nodejs 18 image
+FROM registry.access.redhat.com/ubi8/nodejs-18:1-71.1695741533
 
 # Change user to root temporarily
 USER root
@@ -15,7 +15,7 @@ WORKDIR /project
 COPY --chown=1001:1001 package.json package-lock.json ./
 
 # Install all Angular dependencies
-RUN npm install
+RUN npm ci
 
 # Add application files in container 
 COPY . .
@@ -23,11 +23,17 @@ COPY . .
 # Run build script using npm command
 RUN npm run build
 
-# Stage 2: Serve Angular app with Nginx
-FROM registry.access.redhat.com/ubi8/nginx-118
+# Set permission of .angular file in container
+VOLUME ["/project/.angular"]
 
-COPY --from=build-stage /project/dist/frontend-contrader /usr/share/nginx/html
+# Open port to allow traffic in container
+EXPOSE 8080
 
-EXPOSE 80
+# Set environment variable for Node.js memory limit
+ENV NODE_OPTIONS="--max_old_space_size=8192"
 
-CMD ["nginx", "-g", "daemon off;"]
+# Change user back to non-root user
+USER 1001
+
+# Run the application using npm command
+CMD ["npm", "start"]
