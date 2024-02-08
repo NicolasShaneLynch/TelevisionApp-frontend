@@ -22,5 +22,8 @@ VOLUME ["/app/.angular"]
 # Open port to allow traffic in container
 EXPOSE 80
 
+# Set environment variable for Node.js memory limit
+ENV NODE_OPTIONS="--max_old_space_size=8192"
+
 # Run start script using npm command
 CMD ["npm", "start"]
