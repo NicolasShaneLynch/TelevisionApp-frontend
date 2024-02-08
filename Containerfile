@@ -15,13 +15,10 @@ WORKDIR /project
 COPY --chown=1001:1001 package.json package-lock.json ./
 
 # Install all Angular dependencies
-RUN npm ci
+RUN npm install
 
 # Add application files in container 
 COPY . .
-
-# Run build script using npm command
-RUN npm run build
 
 # Set permission of .angular file in container
 VOLUME ["/project/.angular"]
