@@ -34,4 +34,4 @@ ENV NODE_OPTIONS="--max_old_space_size=4096"
 
 # Temporarily switch to root user to run npm start with escalated privileges
 
-CMD npm build
+CMD npm run build
