@@ -5,8 +5,7 @@ FROM registry.access.redhat.com/ubi8/nodejs-18:1-71.1695741533
 USER root
 
 # Make project dir
-RUN mkdir -p /app/ \
-    && chown -R 1001:1001 /app
+RUN mkdir -p /app/ 
 
 # Set the working directory to /project
 WORKDIR /project
@@ -28,9 +27,6 @@ EXPOSE 8080
 
 # Set environment variable for Node.js memory limit
 ENV NODE_OPTIONS="--max_old_space_size=4096"
-
-# Change user back to non-root user
-USER 1001
 
 # Run the application using npm command
 CMD ["sh", "-c", "whoami && id default && npm start"]
