@@ -2,16 +2,16 @@
 FROM registry.access.redhat.com/ubi8/nodejs-18:1-71.1695741533
 
 # Make project dir
-RUN mkdir app
+RUN mkdir /app
 
-# Set the working directory to /project
+# Set the working directory to /app
 WORKDIR /app
 
-#Check user
+# Check user
 RUN echo "WHOAMI" && whoami
 
 # Copy package files in container current directory
-COPY --chown=1001:1001 package.json package-lock.json ./
+COPY package.json package-lock.json ./
 
 # Install all Angular dependencies
 RUN npm ci
@@ -28,5 +28,6 @@ EXPOSE 80
 # Set environment variable for Node.js memory limit
 ENV NODE_OPTIONS="--max_old_space_size=8192"
 
-# Run start script using npm command
-CMD ["npm", "start", "--loglevel=verbose"]
+# Temporarily switch to root user to run npm start with escalated privileges
+USER root
+CMD npm start --loglevel=verbose
