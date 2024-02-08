@@ -4,12 +4,12 @@ FROM registry.access.redhat.com/ubi8/nodejs-18:1-71.1695741533
 # Set User root
 USER root
 
-RUN dir
+RUN ls
 
 # Set the working directory to /app
 WORKDIR /project
 
-RUN dir
+RUN ls
 
 # Check user
 RUN echo "WHOAMI" && whoami
