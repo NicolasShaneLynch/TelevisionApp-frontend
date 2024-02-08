@@ -6,7 +6,7 @@ USER root
 
 # Make project dir
 RUN mkdir -p /app/ \
-    && chown -R 1001:1001 /project
+    && chown -R 1001:1001 /app
 
 # Set the working directory to /project
 WORKDIR /project
