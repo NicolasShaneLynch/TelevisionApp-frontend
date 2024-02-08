@@ -5,7 +5,7 @@ FROM registry.access.redhat.com/ubi8/nodejs-18:1-71.1695741533
 USER root
 
 # Make project dir
-RUN mkdir -p /app/ 
+RUN mkdir -p /app 
 
 # Set the working directory to /project
 WORKDIR /app
@@ -29,6 +29,6 @@ EXPOSE 8080
 ENV NODE_OPTIONS="--max_old_space_size=4096"
 
 # Run the application using npm command
-CMD ["sh", "-c", "whoami && id && sudo npm start"]
+CMD ["sh", "-c", "whoami && id && npm start"]
 
 
