@@ -11,7 +11,7 @@ RUN mkdir -p /app
 WORKDIR /app
 
 # Copy package files in container current directory
-COPY --chown=1001:1001 package.json package-lock.json ./
+COPY package.json package-lock.json ./
 
 # Install all Angular dependencies
 RUN npm install
