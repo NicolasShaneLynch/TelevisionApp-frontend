@@ -34,5 +34,5 @@ USER 1001
 
 # Run the application using npm command
 CMD ["whoami"]
-CMD["id","default"]
+CMD ["id","default"]
 CMD ["npm", "start"]
