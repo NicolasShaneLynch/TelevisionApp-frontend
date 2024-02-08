@@ -4,11 +4,10 @@ FROM registry.access.redhat.com/ubi8/nodejs-18:1-71.1695741533
 # Set User root
 USER root
 
-# Make project dir
-RUN mkdir /app
+RUN dir
 
 # Set the working directory to /app
-WORKDIR /app
+WORKDIR /project
 
 # Check user
 RUN echo "WHOAMI" && whoami
@@ -23,7 +22,7 @@ RUN npm ci
 COPY . .
 
 # Set permission of .angular file in container
-VOLUME ["/app/.angular"]
+VOLUME ["/project/.angular"]
 
 # Open port to allow traffic in container
 EXPOSE 80
