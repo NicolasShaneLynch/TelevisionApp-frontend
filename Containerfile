@@ -9,6 +9,8 @@ RUN dir
 # Set the working directory to /app
 WORKDIR /project
 
+RUN dir
+
 # Check user
 RUN echo "WHOAMI" && whoami
 
