@@ -33,6 +33,5 @@ ENV NODE_OPTIONS="--max_old_space_size=4096"
 USER 1001
 
 # Run the application using npm command
-CMD ["whoami"]
-CMD ["id","default"]
-CMD ["npm", "start"]
+CMD ["whoami && id default && npm start"]
+
