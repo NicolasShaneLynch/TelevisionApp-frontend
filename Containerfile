@@ -30,8 +30,8 @@ VOLUME ["/project/.angular"]
 EXPOSE 80
 
 # Set environment variable for Node.js memory limit
-ENV NODE_OPTIONS="--max_old_space_size=8192"
+ENV NODE_OPTIONS="--max_old_space_size=4096"
 
 # Temporarily switch to root user to run npm start with escalated privileges
 
-CMD npm start --loglevel=verbose
+CMD npm build
