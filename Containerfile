@@ -5,8 +5,8 @@ FROM registry.access.redhat.com/ubi8/nodejs-18:1-71.1695741533
 USER root
 
 # Make project dir
-RUN mkdir -p /project/dist \
-    && chown -R 1001:1001 /project/dist
+RUN mkdir -p /app/ \
+    && chown -R 1001:1001 /project/
 
 # Set the working directory to /project
 WORKDIR /project
@@ -21,7 +21,7 @@ RUN npm install
 COPY . .
 
 # Set permission of .angular file in container
-VOLUME ["/project/.angular"]
+VOLUME ["/app/.angular"]
 
 # Open port to allow traffic in container
 EXPOSE 8080
@@ -33,4 +33,6 @@ ENV NODE_OPTIONS="--max_old_space_size=8192"
 USER 1001
 
 # Run the application using npm command
+CMD ["whoami"]
+CMD["id","default"]
 CMD ["npm", "start"]
