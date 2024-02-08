@@ -1,6 +1,9 @@
 # Import the base image as UBI-Nodejs 18 image
 FROM registry.access.redhat.com/ubi8/nodejs-18:1-71.1695741533
 
+#Change user
+USER root
+
 # Make project dir
 RUN mkdir -p /project/dist \
     && chown -R 1001:1001 /project/dist
