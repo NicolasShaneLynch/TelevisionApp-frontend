@@ -7,21 +7,23 @@ RUN mkdir app
 # Set the working directory to /project
 WORKDIR /app
 
-# Copy package files in container currunt direcctory
+# Copy package files in container current directory
 COPY --chown=1001:1001 package.json package-lock.json ./
 
-
-# Install all Angular dependacies
+# Install all Angular dependencies
 RUN npm ci
 
 # Add application files in container 
 COPY . .
 
-# Set permision of .angular file in container
+# Set permission of .angular file in container
 VOLUME ["/app/.angular"]
 
 # Open port to allow traffic in container
 EXPOSE 8080
+
+# Set environment variable for Node.js memory limit
+ENV NODE_OPTIONS="--max_old_space_size=4096"
 
 # Run start script using npm command
 CMD ["npm", "start"]
