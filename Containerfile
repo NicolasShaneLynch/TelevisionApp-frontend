@@ -8,7 +8,7 @@ USER root
 RUN mkdir -p /app/ 
 
 # Set the working directory to /project
-WORKDIR /project
+WORKDIR /app
 
 # Copy package files in container current directory
 COPY --chown=1001:1001 package.json package-lock.json ./
@@ -29,6 +29,6 @@ EXPOSE 8080
 ENV NODE_OPTIONS="--max_old_space_size=4096"
 
 # Run the application using npm command
-CMD ["sh", "-c", "whoami && id default && npm start"]
+CMD ["sh", "-c", "whoami && id && npm start"]
 
 
