@@ -7,6 +7,9 @@ RUN mkdir app
 # Set the working directory to /project
 WORKDIR /app
 
+#Check user
+RUN echo "WHOAMI" && whoami
+
 # Copy package files in container current directory
 COPY --chown=1001:1001 package.json package-lock.json ./
 
@@ -26,4 +29,4 @@ EXPOSE 80
 ENV NODE_OPTIONS="--max_old_space_size=8192"
 
 # Run start script using npm command
-CMD ["npm", "start"]
+CMD ["npm", "start", "--loglevel=verbose"]
