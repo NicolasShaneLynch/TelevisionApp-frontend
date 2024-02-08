@@ -1,6 +1,9 @@
 # Import the base image as UBI-Nodejs 18 image
 FROM registry.access.redhat.com/ubi8/nodejs-18:1-71.1695741533
 
+# Set User root
+USER root
+
 # Make project dir
 RUN mkdir /app
 
@@ -29,5 +32,5 @@ EXPOSE 80
 ENV NODE_OPTIONS="--max_old_space_size=8192"
 
 # Temporarily switch to root user to run npm start with escalated privileges
-USER root
+
 CMD npm start --loglevel=verbose
