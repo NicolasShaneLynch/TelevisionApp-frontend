@@ -29,4 +29,4 @@ COPY --from=builder /usr/src/app/dist/frontend-contrader /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/nginx.conf
 
 # Espone la porta 80 per consentire l'accesso esterno
-EXPOSE 80
+EXPOSE 8085
