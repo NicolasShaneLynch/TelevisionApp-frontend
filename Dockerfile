@@ -11,7 +11,7 @@ COPY package*.json ./
 RUN npm install
 
 # Copia l'intero codice dell'applicazione nella directory di lavoro
-COPY .
+COPY . .
 
 # Costruisci l'applicazione per la produzione
 RUN npm run build --prod
