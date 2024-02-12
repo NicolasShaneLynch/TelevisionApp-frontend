@@ -1,5 +1,5 @@
 /** Costante di environment per la produzione */
 export const environment = {
   production: true,
-  apiUrl: "http://172.30.101.239:8080"
+  apiUrl: "https://backend-nicolaslynch-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com"
 };
