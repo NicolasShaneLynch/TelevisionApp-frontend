@@ -1,26 +1,32 @@
-# use a node image as the base image and name it 'build' for
-# later reference
-FROM node:lts-alpine as build
-# set the working directory to /app
-WORKDIR /app
-# copy the current directory contents into the container at /app
-COPY . .
-# install dependencies, matching package-lock.json
-RUN npm ci
-# build the app
-RUN npm run build
+# Fase 1: Costruire l'applicazione Angular
+FROM node:latest AS builder
 
+# Imposta la directory di lavoro per l'applicazione
+WORKDIR /usr/src/app
 
-# Use the latest version of the official Nginx image as the base image
+# Copia i file package.json e package-lock.json nella directory di lavoro
+COPY package*.json ./
+
+# Installa le dipendenze npm
+RUN npm install
+
+# Copia l'intero codice dell'applicazione nella directory di lavoro
+COPY .
+
+# Costruisci l'applicazione per la produzione
+RUN npm run build --prod
+
+# Fase 2: Servire l'applicazione Angular utilizzando Nginx
 FROM nginx:latest
-# copy the custom nginx configuration file to the container in the default
-# location
-COPY nginx.conf /etc/nginx/nginx.conf
-# copy the built application from the build stage to the nginx html 
-# directory
-COPY --from=build /app/dist/frontend-contrader /usr/share/nginx/html
 
-# The above commands build the Angular app and then configure and build a 
-# Docker image for serving it using the nginx web server.
-EXPOSE 8080
-CMD ["nginx", "-g", "daemon off;"]
+# Rimuovi i contenuti predefiniti della directory html di NGINX
+RUN rm -rf /usr/share/nginx/html/*
+
+# Copia l'applicazione Angular costruita dalla fase precedente nella directory html di NGINX
+COPY --from=builder /usr/src/app/dist/frontend-contrader /usr/share/nginx/html
+
+# Copia la configurazione personalizzata di NGINX
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# Espone la porta 80 per consentire l'accesso esterno
+EXPOSE 80
